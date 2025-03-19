@@ -7,6 +7,9 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import {  BrowserAnimationsModule, provideAnimations, provideNoopAnimations } from '@angular/platform-browser/animations';
 import { tokenInterceptor } from './Shared/interceptors/token.interceptor';
 import { loaderscreenInterceptor } from './Shared/interceptors/loaderscreen.interceptor';
+import { provideServerRouting } from '@angular/ssr';
+import { provideServerRendering } from '@angular/platform-server';
+import { serverRoutes } from './app.routes.server';
 
 
 export const appConfig: ApplicationConfig = {
@@ -20,9 +23,11 @@ export const appConfig: ApplicationConfig = {
       preventDuplicates: true,
       progressBar:true,
 
+
     }),
     BrowserAnimationsModule,
-
+    provideServerRendering(),
+    provideServerRouting(serverRoutes)
 
   ]}
 
