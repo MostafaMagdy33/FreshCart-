@@ -1,0 +1,18 @@
+input {
+  &:focus {
+    background-color: #fff;
+    border-color: #85d685;
+    box-shadow: 0 0 0 0.25rem rgba(10, 173, 10, 0.25);
+    color: #21313c;
+    outline: 0;
+  }
+  &[type="radio"]:checked {
+    color: #0aad0a;
+    border-color: #0aad0a;
+    background-color: #0aad0a;
+  }
+}
+input.ng-invalid.ng-touched {
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25);
+  border-color: red;
+}

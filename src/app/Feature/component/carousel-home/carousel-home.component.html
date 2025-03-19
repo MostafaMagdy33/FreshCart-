@@ -1,0 +1,115 @@
+<section class="container mx-auto py-10">
+  <div class="py-5">
+    <owl-carousel-o [options]="customOptions">
+      <ng-container>
+        <ng-template carouselSlide>
+          <!-- First Slide -->
+
+          <div
+            class="bg-cover p-2 lg:p-20 w-full h-full bg-center rounded-lg"
+            style="background-image: url('/images/slide-1.jpg')"
+          >
+            <div
+              class="lg:pl-12 py-lg-16 xl:w-5/12 md:w-7/12 py-14 px-8 text-start"
+            >
+              <span
+                class="badge bg-yellow-400 text-black px-3 py-1 rounded-full"
+                >Opening Sale Discount 50%</span
+              >
+              <h2 class="text-dark text-2xl font-bold mt-4">
+                SuperMarket For Fresh Grocery
+              </h2>
+              <p class="text-lg">
+                Introducing a new model for online grocery shopping and
+                convenient home delivery.
+              </p>
+              <button
+                routerLink="/product"
+                class="btn bg-black hover:text-none text-white px-6 py-2 rounded mt-3 inline-flex items-center"
+              >
+                Shop Now
+              </button>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template carouselSlide>
+          <!-- Second Slide -->
+          <div
+            class="bg-cover p-2 lg:p-20 w-full bg-center h-full rounded-lg"
+            style="background-image: url('/images/slider-2.jpg')"
+          >
+            <div
+              class="lg:pl-12 py-lg-16 xl:w-5/12 md:w-7/12 py-14 px-8 text-start"
+            >
+
+              <span
+                class="badge bg-yellow-400 text-black px-3 py-1 rounded-full"
+                >Free Shipping-Orders Over 100EGP</span
+              >
+              <h2 class="text-dark text-2xl font-bold mt-4">
+                Free Shipping on Orders Over 100EGP
+              </h2>
+              <p class="text-lg">
+                Free Shipping to First-Time Customers Only, after promotions and
+                discounts are applied.
+              </p>
+              <button
+                routerLink="/product"
+                class="btn bg-black hover:text-none text-white px-6 py-2 rounded mt-3 inline-flex items-center"
+              >
+                Shop Now
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+
+  <app-carousel-brands></app-carousel-brands>
+
+  <div class="container mx-auto py-10">
+    <div
+      class="flex justify-between flex-wrap md:flex-nowrap items-center gap-5"
+    >
+      <div
+        class="bg-cover w-full bg-center h-full rounded-lg"
+        style="background-image: url('images/grocery-banner-2.jpg')"
+      >
+        <div
+          class="lg:pl-12 py-lg-16 xl:w-5/12 md:w-7/12 py-14 px-8 text-start"
+        >
+          <h5 class="text-black text-xl font-bold py-1 rounded-full">
+            Freshly Baked Buns
+          </h5>
+          <p class="mb-3 font-bold text-sm text-[#5c6c75]">Get Upto 25% Off</p>
+          <button
+            routerLink="/product"
+            class="btn bg-black hover:text-none text-white px-6 py-2 rounded-sm mt-3 inline-flex items-center"
+          >
+            Shop Now
+          </button>
+        </div>
+      </div>
+      <div
+        class="bg-cover w-full bg-center h-full rounded-lg"
+        style="background-image: url('images/grocery-banner.png')"
+      >
+        <div
+          class="lg:pl-12 py-lg-16 xl:w-5/12 md:w-7/12 py-14 px-8 text-start"
+        >
+          <h5 class="text-black text-xl font-bold py-1 rounded-full">
+            Fruits & Vegetables
+          </h5>
+          <p class="mb-3 font-bold text-sm text-[#5c6c75]">Get Upto 30% Off</p>
+          <button
+            routerLink="/product"
+            class="btn bg-black hover:text-none text-white px-6 py-2 rounded-sm mt-3 inline-flex items-center"
+          >
+            Shop Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

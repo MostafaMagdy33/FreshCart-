@@ -1,0 +1,310 @@
+<div>
+  <div class="container mx-auto py-10 px-4 md:px-0">
+    <nav class="flex pb-5" aria-label="Breadcrumb">
+      <ol
+        class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse"
+      >
+        <li class="inline-flex items-center">
+          <a
+            routerLink="/home"
+            class="inline-flex cursor-pointer capitalize items-center text-sm font-bold text-[#0aad0a] hover:text-[#0aad0ad3] dark:text-gray-400 dark:hover:text-white"
+          >
+            <svg
+              class="w-3 h-3 me-2.5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"
+              />
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg
+              class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 9 4-4-4-4"
+              />
+            </svg>
+            <a
+              routerLink="/cart"
+              class="ms-1 text-sm font-bold capitalize cursor-pointer text-[#0aad0a] hover:text-[#0aad0ad3] md:ms-2 dark:text-gray-400 dark:hover:text-white"
+              >Shopping Cart</a
+            >
+          </div>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg
+              class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 9 4-4-4-4"
+              />
+            </svg>
+            <p
+              class="ms-1 text-sm font-bold capitalize text-gray-400 md:ms-2 dark:text-gray-400 dark:hover:text-white"
+            >
+              Shop Checkout
+            </p>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <div class="order-1 md:order-none mx-auto">
+        <div class="flex items-center justify-center h-screen">
+          <div class="overflow-x-auto">
+            <div class="mb-6">
+              <h3 class="mb-1 font-bold text-2xl">Order Details</h3>
+            </div>
+
+            <table
+              class="w-full bg-white shadow-md rounded-lg border border-gray-200"
+            >
+              <thead>
+                <tr class="border-b">
+                  <th class="px-6 py-4 text-left text-gray-600 font-medium">
+                    Product Name
+                  </th>
+
+                  <th class="px-6 py-4 text-left text-gray-600 font-medium">
+                    Qty
+                  </th>
+                  <th class="px-6 py-4 text-left text-gray-600 font-medium">
+                    Total
+                  </th>
+                </tr>
+              </thead>
+              @for (cartP of allProductCart; track $index) {
+
+              <tbody>
+                <tr class="border-b">
+                  <td class="px-6 py-4 flex items-center gap-4">
+                    <img
+                      [src]="cartP.product.imageCover"
+                      [alt]="cartP.product.title"
+                      class="w-12 h-12 rounded-md"
+                    />
+                    <div>
+                      <p class="text-gray-800 font-medium">
+                        {{ cartP.product.title.split(" ", 2).join(" ") }}
+                      </p>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4">{{ cartP.count }}</td>
+                  <td class="px-6 py-4 font-semibold text-gray-900">
+                    {{ cartP.price * cartP.count | currency : " " }} EGP
+                  </td>
+                </tr>
+              </tbody>
+
+              }
+              <tfoot>
+                <tr class="border-b">
+                  <td class="px-6 py-4 flex items-center gap-4">Subtotal</td>
+
+                  <td class="px-6 py-4"></td>
+                  <td class="px-6 py-4 font-semibold text-gray-900">
+                    {{ cartPro.data.totalCartPrice | currency : " " }} EGP
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:w-8/12 w-full">
+        <div class="mb-6">
+          <h2 class="mb-1 font-bold text-2xl">Checkout</h2>
+          <p class="mb-3 font-bold text-sm text-[#5c6c75]">
+            shopping information
+          </p>
+        </div>
+        <form [formGroup]="checkOutForm">
+          <div class="mb-5">
+            <input
+              type="text"
+              id="details"
+              class="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+              placeholder="Details"
+              formControlName="details"
+            />
+          </div>
+          <div class="mb-5">
+            <input
+              type="text"
+              id="city"
+              class="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+              placeholder="City"
+              formControlName="city"
+            />
+          </div>
+          <div class="mb-5">
+            <input
+              type="text"
+              id="phone"
+              class="border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+              required
+              placeholder="Your Phone Number"
+              formControlName="phone"
+            />
+            @if(checkOutForm.get('phone')?.touched &&
+            checkOutForm.get('phone')?.hasError('required')){
+            <div
+              class="flex items-center p-1 mb-4 text-sm text-red-600 rounded-lg dark:bg-gray-800 dark:text-red-400"
+              role="alert"
+            >
+              <div>
+                <ul class="font-bold">
+                  <li>
+                    <i class="fa-solid fa-circle-exclamation"></i> accept only
+                    egypt phone numbers
+                  </li>
+                </ul>
+              </div>
+            </div>
+            } @if(checkOutForm.get('phone')?.touched &&
+            checkOutForm.get('phone')?.hasError('pattern')){
+            <div
+              class="flex items-center p-1 mb-4 text-sm text-red-600 rounded-lg dark:bg-gray-800 dark:text-red-400"
+              role="alert"
+            >
+              <div>
+                <ul class="font-bold">
+                  <li>
+                    <i class="fa-solid fa-circle-exclamation"></i> Invalid Phone
+                    Number Format (ex. 011xxxxxxxx)
+                  </li>
+                </ul>
+              </div>
+            </div>
+            }
+          </div>
+
+          <ul>
+            <li>
+              <details class="group">
+                <summary
+                  class="flex items-center gap-3 py-3 font-medium marker:content-none hover:cursor-pointer"
+                >
+                  <i class="fa-regular fa-credit-card"></i>
+                  <span
+                    class="hover:text-[#099309] text-lg font-semibold transition ease-in-out"
+                  >
+                    Payment Method</span
+                  >
+                </summary>
+
+                <article class="px-4 pb-4">
+                  <div class="">
+                    <!-- check input -->
+                    <div class="flex border p-6 rounded-lg shadow">
+                      <div class="form-check">
+                        <input
+                          class="form-check-inputCash"
+                          value="cash"
+                          (change)="clickCash()"
+                          type="radio"
+                          name="payment"
+                          id="cashonDelivery"
+                        />
+                      </div>
+                      <label
+                        class="form-check-labelCash ms-2"
+                        for="cashonDelivery"
+                      >
+                        <div>
+                          <!-- title -->
+                          <h5 class="mb-1 font-bold">Cash on Delivery</h5>
+                          <p class="mb-0 font-bold text-sm text-[#5c6c75]">
+                            Pay with cash when your order is delivered.
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+
+                    <div class="flex border mt-2 p-6 rounded-lg shadow">
+                      <div class="form-check">
+                        <input
+                          class="form-check-inputvisa"
+                          (change)="clickVisa()"
+                          value="visa"
+                          type="radio"
+                          name="payment"
+                          id="visahonDelivery"
+                        />
+                      </div>
+                      <label
+                        class="form-check-labelvisa ms-2"
+                        for="visahonDelivery"
+                      >
+                        <div>
+                          <!-- title -->
+                          <h5 class="mb-1 font-bold">Credit / Debit Card</h5>
+                          <p class="mb-0 font-bold text-sm text-[#5c6c75]">
+                            Safe money transfer using your bank accou k account.
+                            We support Mastercard tercard, Visa, Discover and
+                            Stripe.
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </article>
+              </details>
+            </li>
+          </ul>
+          @if (btnVisa) {
+          <button
+            type="submit"
+            class="hover:bg-[#099309] transition-all ease-in-out text-white bg-[#0aad0a] font-semibold rounded-lg text-sm w-full px-5 py-2.5 text-center"
+            (click)="paymentVisa(checkOutForm)"
+          >
+            Pay {{ cartPro.data.totalCartPrice | currency : " " }} EGP
+          </button>
+          }@if(btnCash) {
+          <button
+            type="submit"
+            class="hover:bg-[#099309] transition-all ease-in-out text-white bg-[#0aad0a] font-semibold rounded-lg text-sm w-full px-5 py-2.5 text-center"
+            (click)="paymentCash(checkOutForm)"
+          >
+            Pay {{ cartPro.data.totalCartPrice | currency : " " }} EGP
+          </button>
+          } @if (btn) {
+          <button
+            type="submit"
+            class="hover:bg-[#099309] transition-all ease-in-out text-white bg-[#0aad0a] font-semibold rounded-lg text-sm w-full px-5 py-2.5 text-center"
+          >
+            Pay {{ cartPro.data.totalCartPrice | currency : " " }} EGP
+          </button>
+          }
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

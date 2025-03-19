@@ -1,0 +1,28 @@
+<owl-carousel-o [options]="customOptions">
+  <ng-container>
+    @for (Cat of CategoriesApi; track $index) {
+    <ng-template carouselSlide [id]="Cat._id">
+      <a
+        class="group relative flex h-48 items-end overflow-hidden bg-gray-100 shadow-lg md:col-span-2 md:h-80"
+      >
+        <img
+          [src]="Cat.image"
+          loading="lazy"
+          [alt]="Cat.name"
+          class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+        />
+
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-gray-800 opacity-50 transition ease-in-out"
+        ></div>
+
+        <p
+          class="cursor-pointer absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-2xl text-center text-white font-roboto opacity-0 font-medium group-hover:opacity-[1] group-hover:bg-opacity-10 transition ease-in-out"
+        >
+          {{ Cat.name }}
+        </p>
+      </a>
+    </ng-template>
+    }
+  </ng-container>
+</owl-carousel-o>

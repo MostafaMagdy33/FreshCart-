@@ -1,0 +1,104 @@
+<!-- Modal toggle -->
+<a data-modal-target="default-modal" data-modal-toggle="default-modal">
+  <i
+    class="fa-solid fa-magnifying-glass hover:text-[#0aad0a] text-gray-900"
+  ></i>
+</a>
+
+<!-- Main modal -->
+
+<div
+  id="default-modal"
+  aria-hidden="true"
+  class="hidden overflow-y-auto overflow-x-hidden bg-black/[0.09] fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+>
+  <div class="relative p-4 w-full max-w-2xl max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+      <!-- Modal header -->
+      <div
+        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200"
+      >
+        <button
+          type="button"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+          data-modal-hide="default-modal"
+        >
+          <svg
+            class="w-3 h-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+            />
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+      <!-- Modal body -->
+      <div class="p-4 md:p-5 space-y-4">
+        <div class="mb-2">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <i class="fa-solid fa-magnifying-glass text-gray-900"></i>
+            </div>
+            <input
+              type="search"
+              [(ngModel)]="searchValue"
+              name="search"
+              placeholder="Search here for Product"
+              class="p-4 pl-10 text-gray-600 bg-slate-50 rounded w-full border-gray-100"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- Modal footer -->
+      <div>
+        @if(searchValue !== ''){ @for (product of
+        productsData|search:searchValue ; track product.id) {
+        <table
+          class="w-full bg-white shadow-md rounded-lg border border-gray-200"
+        >
+          <tbody>
+            <tr
+              (click)="clickAndClose()"
+              [routerLink]="['/product', product.id]"
+              class="border-b"
+            >
+              <td class="px-6 py-4 flex items-center gap-4">
+                <img
+                  [src]="product.imageCover"
+                  [alt]="product.title"
+                  class="w-12 h-12 rounded-md"
+                />
+                <div>
+                  <p class="text-gray-800 font-medium">
+                    {{ product.title.split(" ", 2).join(" ") }}
+                  </p>
+                </div>
+              </td>
+
+              <td class="px-6 py-4"></td>
+              <td class="px-6 py-4 font-semibold text-gray-900">
+                {{ product.price | currency : " " }} EGP
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        }@empty {
+        <h1 class="p-4">No results found.</h1>
+
+        } }
+      </div>
+    </div>
+  </div>
+</div>
