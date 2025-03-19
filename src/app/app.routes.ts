@@ -87,7 +87,7 @@ export const routes: Routes = [
     title: 'FreshCart:Contact us',
   },
   {
-    path: 'checkOut',
+    path: 'checkOut/:id',
     component: CheckoutComponent,
     title: 'FreshCart:checkOut',
   },

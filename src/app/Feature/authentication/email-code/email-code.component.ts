@@ -53,9 +53,8 @@ export class EmailCodeComponent {
           this.isInValid = true;
           this.isValid = false;
           this._ForgetPasswordService.checkVerify.next(false);
-          setTimeout(() => {
-            this._Router.navigate(['/forgetPassword']);
-          }, 2000);
+          this._Router.navigate(['/forgetPassword']);
+
         },
       });
     }
